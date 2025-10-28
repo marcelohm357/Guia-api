@@ -1,8 +1,6 @@
-# Guia-api
-Estudos sobre o funcionamento de APIs, métodos HTTP e arquiteturas.
 # Guia Completo sobre APIs: Métodos, Clientes e Arquiteturas (Cloud vs. LAN)
 
-Este repositório é um estudo sobre os conceitos fundamentais de APIs, desde as ações que elas executam até onde elas operam e como interagimos com elas.
+Este repositório é um estudo sobre os conceitos fundamentais de APIs, desde as ações que elas executam (Métodos HTTP) até onde operam (Cloud vs. LAN) e como se comparam com outras arquiteturas (REST vs. SOAP).
 
 ## 1. O que é uma API? A Analogia do Garçom
 
@@ -105,7 +103,7 @@ Quando a API responde, ela envia um **Código de Status** que resume o que acont
 * **`1xx` (Informativo):** "Recebi seu pedido e estou pensando..." (Raro de ver)
 * **`2xx` (Sucesso):** "Tudo certo! Aqui está o que você pediu."
 * **`3xx` (Redirecionamento):** "O que você quer está em outro lugar, vá para lá."
-* **`4ax` (Erro do Cliente):** "Você fez o pedido errado."
+* **`4xx` (Erro do Cliente):** "Você fez o pedido errado."
 * **`5xx` (Erro do Servidor):** "Eu (a API/cozinha) cometi um erro."
 
 ### Códigos Mais Importantes para Saber
@@ -122,3 +120,19 @@ Quando a API responde, ela envia um **Código de Status** que resume o que acont
 | **`404 Not Found`** | **Não Encontrado** | "Procurei em todo lugar, mas não temos o prato (endpoint) que você pediu." (A URL está errada) |
 | | | |
 | **`500 Internal Server Error`** | **Erro Interno do Servidor** | "Eu fui levar o pedido para a cozinha e ela explodiu! Não é sua culpa, é nossa." (Erro genérico no código da API) |
+
+## 7. O Padrão Oposto: REST vs. SOAP
+
+REST (com JSON) é o padrão mais moderno e popular, mas não é o único. Seu antecessor, **SOAP** (com XML), ainda é muito usado em sistemas corporativos legados (bancos, governos, telecom).
+
+Se **REST é um garçom** (flexível e rápido), **SOAP é um advogado** (formal, rígido e baseado em contratos).
+
+### Comparação Rápida: REST vs. SOAP
+
+| Característica | 🔵 REST (O Garçom) | ⚫️ SOAP (O Advogado) |
+| :--- | :--- | :--- |
+| **Formato Padrão** | **JSON.** Leve, rápido, fácil de ler. | **XML.** Verboso (pesado), complexo, mas muito estruturado. |
+| **Como usa HTTP** | Usa os verbos HTTP corretamente (`GET`, `POST`, `PUT`, `DELETE`). | Usa quase exclusivamente `POST` para *todas* as operações, com a ação dentro do XML. |
+| **Estilo vs. Protocolo**| É um **Estilo de Arquitetura.** Um conjunto de boas práticas, mais flexível. | É um **Protocolo Rígido.** Regras estritas sobre a estrutura da mensagem (Envelope, Header, Body). |
+| **O "Contrato"** | Opcional. (Pode usar um `OpenAPI/Swagger` para documentação). | **Obrigatório.** Usa um arquivo `WSDL` (Web Services Description Language). |
+| **Quando usar?** | Web, mobile, microserviços, IoT. Quase tudo que é novo. | Sistemas corporativos (Enterprise), integrações bancárias, governamentais. Onde a segurança e a transação formal são mais importantes que a velocidade. |
